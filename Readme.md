@@ -1,5 +1,7 @@
 1. 기술 스택
+   
 	백엔드: python ,Flask
+
 	프론트 앤드 : Node.js, Vite,ngrok
 	
 
