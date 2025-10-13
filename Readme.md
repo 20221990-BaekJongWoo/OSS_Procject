@@ -20,6 +20,8 @@ ngrok이 자동으로 HTTPS를 적용하므로, 위치 권한이나 브라우저
 
 
 
+
+
 2.작동 방법
 
 작동 테스트용 서버 실행 절차
@@ -45,10 +47,13 @@ backend 폴더에서 gitbash 키고 python app.py 하면 백엔드 서버가 열
 그때에는
 
 python -m venv venv
+
 source venv/Scripts/activate        
 python app.py                   # http://localhost:5000
 
 이 순서대로 입력해 주면 됨
+
+
 
 
 
@@ -63,6 +68,8 @@ ex) 대전광역시 서구 음식점 현황.csv
 >>데이터셋은 공공데이터 포털 들어가면 얻을 수 있음
 
 이후에 필요에 따라 추가 될 수도 있음
+
+
 
 
 4. 작동 원리
