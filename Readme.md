@@ -59,9 +59,13 @@ python app.py
 3.채워야 할  파일 목록
  
 1.index.html 		(frontend)		메인페이지(눈에 보이는 웹사이트)
+
 2.main.js		    (frontend)		웹사이트 로직(fetch 요청 등)
+
 3.app.py  			(backend)		Flask 백엔드 서버
+
 4.csv 데이터셋 파일 	(backend)		음식점 데이터
+
 
 ex) 대전광역시 서구 음식점 현황.csv
 >>데이터셋은 공공데이터 포털 들어가면 얻을 수 있음
