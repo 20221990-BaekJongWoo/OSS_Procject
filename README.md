@@ -22,6 +22,6 @@
 
 ## 개발환경
   - ### DBMS :
-  - ### 개발 언어 :
+  - ### 개발 언어 : Python, JavaScript 
   - ### XXXXXX
   - ### XXXXXX
