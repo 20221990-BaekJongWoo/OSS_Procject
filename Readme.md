@@ -2,7 +2,7 @@
    
 	백엔드: python ,Flask
 
-	프론트 앤드 : Node.js, Vite,ngrok
+	프론트 앤드 : Node.js, Vite,ngrok(Node.js,ngrok는 따로 설치하셔야 합니다.)
 	
 
 ngrok
