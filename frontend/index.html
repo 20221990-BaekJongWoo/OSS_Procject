@@ -5,46 +5,105 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>메뉴 추천 & 인근 음식점</title>
   <style>
-    body { font-family: system-ui, sans-serif; max-width: 820px; margin: 40px auto; padding: 0 16px; }
-    h1 { margin-bottom: 6px; }
-    .row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
-    .chips { display: flex; gap: 8px; flex-wrap: wrap; margin: 8px 0 12px; }
-    .chip {
-      border: 1px solid #d0d7de; padding: 6px 10px; border-radius: 999px; cursor: pointer;
-      user-select: none; background: #fff;
+    body {
+      font-family: system-ui, sans-serif;
+      max-width: 820px;
+      margin: 40px auto;
+      padding: 0 16px;
     }
-    .chip.excluded { background: #fbe9e9; border-color: #e53935; color: #b71c1c; }
-    button { padding: 8px 14px; border-radius: 8px; border: 1px solid #d0d7de; cursor: pointer; }
-    button.primary { background: #1769e0; color: #fff; border: none; }
+    h1 { margin-bottom: 6px; }
+
+    .row {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    #menu-sections {
+      margin-top: 12px;
+    }
+
+    .menu-section {
+      margin-bottom: 22px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .chip {
+      border: 1px solid #d0d7de;
+      padding: 6px 10px;
+      border-radius: 999px;
+      cursor: pointer;
+      user-select: none;
+      background: #fff;
+    }
+    .chip.excluded {
+      background: #fbe9e9;
+      border-color: #e53935;
+      color: #b71c1c;
+    }
+
+    button {
+      padding: 6px 10px;
+      border-radius: 8px;
+      border: 1px solid #d0d7de;
+      cursor: pointer;
+      font-size: 14px;
+      background: #fff;
+    }
+    button.primary {
+      background: #1769e0;
+      color: #fff;
+      border: none;
+    }
+
+    /* 섹션 제목 버튼 (한식/중식 등) */
+    .section-toggle {
+      border: none;
+      background: none;
+      padding: 0;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 16px;
+      color: #222;
+    }
+
     #list { margin-top: 14px; }
     #list li { margin: 6px 0; line-height: 1.4; }
+
     .muted { color:#6b7280; font-size: 14px; }
   </style>
 </head>
 <body>
   <h1>메뉴 추천 & 인근 음식점</h1>
+  <p class="muted">각 음식군에서 제외할 메뉴를 선택한 뒤, 아래에서 추천을 받아보세요.</p>
 
-  <div class="row">
-    <label for="category">카테고리</label>
-    <select id="category">
-      <option value="chinese">중식</option>
-      <option value="japanese">일식</option>
-      <option value="korean">한식</option>
-      <option value="western">양식</option>
-    </select>
-    <span class="muted">* 토글로 제외할 메뉴를 고르세요</span>
-  </div>
+  <!-- 한식/중식/일식/... 섹션들이 전부 여기에 렌더링됨 -->
+  <div id="menu-sections"></div>
 
-  <div id="menu-chips" class="chips"></div>
-
-  <div class="row">
+  <div class="row" style="margin-top:8px">
     <button id="btn-reco" class="primary">추천받기</button>
     <span id="reco" class="muted"></span>
   </div>
 
   <div class="row" style="margin-top:10px">
     <button id="btn-search">내 위치로 검색</button>
-    <label>반경(m) <input id="radius" type="number" value="2000" min="200" step="100" style="width:90px"></label>
+    <label>
+      반경(m)
+      <input id="radius" type="number" value="2000" min="200" step="100" style="width:90px">
+    </label>
   </div>
 
   <ul id="list"></ul>
