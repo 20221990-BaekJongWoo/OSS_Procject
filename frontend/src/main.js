@@ -1250,15 +1250,12 @@ async function findPlaces() {
       const { latitude, longitude } = pos.coords;
       lastGeo = { x: longitude, y: latitude };
 
-      
       const params = new URLSearchParams({
         x: String(longitude),
         y: String(latitude),
         radius: String(radius),
         menuId: lastRecoId,
         cat: lastRecoCat,
-        // 필요하면 라벨도 보내고 싶으면:
-        // menu: lastRecoLabel || ""
       });
 
       try {
@@ -1269,16 +1266,24 @@ async function findPlaces() {
         }
 
         const data = await res.json();
-        // 백엔드 반환 형식에 맞춰서 렌더링
-        renderPlaces(data.places || []);
+        lastPlaces = data.places || [];
+        renderPlaces();
       } catch (e) {
         console.error(e);
         toast("가게 검색에 실패했습니다.");
       }
     },
+
     (err) => {
       console.error(err);
       toast("위치 정보를 가져올 수 없습니다.");
+    },
+
+    
+    {
+      enableHighAccuracy: true,
+      timeout: 8000,
+      maximumAge: 0,
     }
   );
 }

@@ -109,6 +109,7 @@ def to_place_item(doc: Dict[str, Any], base_lng: float, base_lat: float) -> Dict
     else:
         dist = haversine_m(base_lat, base_lng, y, x)
 
+    link = doc.get("place_url") or f("https://map.kakao.com/link/search/{name}")
     return {
         "name": name,
         "address": address,
@@ -116,7 +117,7 @@ def to_place_item(doc: Dict[str, Any], base_lng: float, base_lat: float) -> Dict
         "lat": y,
         "lng": x,
         "distance": dist,
-        "kakaomap_link": f"https://map.kakao.com/link/search/{name}",
+        "url": link,
     }
 
 
