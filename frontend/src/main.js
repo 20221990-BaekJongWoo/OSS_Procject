@@ -1250,35 +1250,35 @@ async function findPlaces() {
       const { latitude, longitude } = pos.coords;
       lastGeo = { x: longitude, y: latitude };
 
-      try {
-        const res = await fetch("/api/places", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            x: longitude,
-            y: latitude,
-            radius,
-            menuId: lastRecoId,
-            cat: lastRecoCat,
-          }),
-        });
+      
+      const params = new URLSearchParams({
+        x: String(longitude),
+        y: String(latitude),
+        radius: String(radius),
+        menuId: lastRecoId,
+        cat: lastRecoCat,
+        // 필요하면 라벨도 보내고 싶으면:
+        // menu: lastRecoLabel || ""
+      });
 
-        const data = await res.json();
-        if (!data.ok) {
-          toast(data.error || "가게 정보를 불러오지 못했습니다.");
+      try {
+        const res = await fetch(`/api/places?${params.toString()}`);
+        if (!res.ok) {
+          toast("가게 검색 중 오류가 발생했습니다.");
           return;
         }
 
-        lastPlaces = data.places || [];
-        renderPlaces();
+        const data = await res.json();
+        // 백엔드 반환 형식에 맞춰서 렌더링
+        renderPlaces(data.places || []);
       } catch (e) {
         console.error(e);
-        toast("가게 정보를 불러오지 못했습니다.");
+        toast("가게 검색에 실패했습니다.");
       }
     },
     (err) => {
       console.error(err);
-      toast("위치 정보를 가져오지 못했습니다.");
+      toast("위치 정보를 가져올 수 없습니다.");
     }
   );
 }
