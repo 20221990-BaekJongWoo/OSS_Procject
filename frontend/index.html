@@ -467,8 +467,8 @@
       </div>
 
       <div class="row" style="margin-top:10px">
-        <button id="btn-search">📍 내 위치로 검색</button>
-        <label>반경(m) <input id="radius" type="number" value="2000" min="200" max="20000" step="100" style="width:90px"></label>
+        <button id="btn-find">📍 내 위치로 검색</button>
+        <label>반경(m) <input id="radius" type="number" value="2000" min="200" max="6000" step="100" style="width:90px"></label>
       </div>
 
       <div class="controls">
@@ -510,28 +510,7 @@
     </div>
   </div>
 
-  <script>
-    (function() {
-      try {
-        const root = document.documentElement;
-        const saved = localStorage.getItem('theme');
-        const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
-        const initial = saved || (prefersLight ? 'light' : 'dark');
-        root.setAttribute('data-theme', initial);
-        const btn = document.getElementById('theme-toggle');
-        const renderLabel = (t) => { if (btn) btn.textContent = t === 'light' ? '☀️ 라이트' : '🌙 다크'; };
-        renderLabel(initial);
-        if (btn) {
-          btn.addEventListener('click', () => {
-            const curr = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
-            root.setAttribute('data-theme', curr);
-            localStorage.setItem('theme', curr);
-            renderLabel(curr);
-          });
-        }
-      } catch (e) { /* no-op */ }
-    })();
-  </script>
+  
   <script type="module" src="/src/main.js"></script>
 </body>
 </html>

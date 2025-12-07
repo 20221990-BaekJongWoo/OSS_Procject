@@ -157,6 +157,7 @@ def places():
       - y:      위도 (float)
       - radius: 반경 (m)
     """
+    print("요청받음")
     # 1) 쿼리 파라미터
     menu_label = request.args.get("menu")       # 예쁜 이름용 (라벨)
     menu_id = request.args.get("menuId") or menu_label  # 실제 키로 쓸 값 (지금은 라벨과 동일)
@@ -165,7 +166,7 @@ def places():
     x = float(request.args.get("x"))
     y = float(request.args.get("y"))
     radius = int(request.args.get("radius", 2000))
-
+    
     # cat 이 비어 있는 구버전 요청 대비용: 메뉴명으로 카테고리 추론
     if not cat and menu_id:
         cat = guess_category_by_menu(menu_id)
