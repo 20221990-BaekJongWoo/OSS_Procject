@@ -47,10 +47,13 @@ backend 폴더에서 gitbash 키고 python app.py 하면 백엔드 서버가 열
 그때에는
 
 python -m venv venv
-source venv/Scripts/activate        
+
+source venv/Scripts/activate    
+
 python app.py                   
 
 이 순서대로 입력해 주면 됨
+
 
 
 
